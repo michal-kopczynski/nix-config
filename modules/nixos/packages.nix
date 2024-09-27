@@ -32,7 +32,7 @@ shared-packages ++ [
   rofi
   rofi-calc
   postgresql
-  libtool # for Emacs vterm
+  #libtool # for Emacs vterm
 
   # Screenshot and recording tools
   flameshot
