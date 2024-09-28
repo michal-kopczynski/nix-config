@@ -136,7 +136,10 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 . "$HOME/.cargo/env"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Linux
+#eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+# Mac (not needed?)
+# export PATH=/opt/homebrew/bin:$PATH
 
 export PATH=$HOME/bin:$PATH
 FZF_BASE="$HOME/.fzf"

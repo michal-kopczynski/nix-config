@@ -6,8 +6,8 @@
 #   xdg_stateHome  = "${config.users.users.${user}.home}/.local/state"; in
 {
   # file = {
-    ".skhdrc".source = ../darwin/config/.skhdrc;
-    ".yabairc".source = ../darwin/config/.yabairc;
+    # ".skhdrc".source = ../darwin/config/.skhdrc;
+    # ".yabairc".source = ../darwin/config/.yabairc;
   # };
   # Raycast script so that "Run Emacs" is available and uses Emacs daemon
   # "${xdg_dataHome}/bin/emacsclient" = {

@@ -1,6 +1,6 @@
 # open terminal
 # alt - return : /Applications/Kitty.app/Contents/MacOS/kitty --single-instance -d ~
-alt - return : /Applications/iTerm.app/Contents/MacOS/iTerm
+alt - return : /Applications/iTerm.app/Contents/MacOS/iTerm2
   
 # close focused window
 shift + alt - q : yabai -m window --close

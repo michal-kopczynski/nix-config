@@ -25,8 +25,11 @@ in
   homebrew = {
     enable = true;
     casks = pkgs.callPackage ./casks.nix {};
-    # onActivation.cleanup = "uninstall";
-
+    onActivation = {
+      cleanup = "uninstall";
+      autoUpdate = true;
+      upgrade = true;
+    };
     # These app IDs are from using the mas CLI app
     # mas = mac app store
     # https://github.com/mas-cli/mas
@@ -42,7 +45,7 @@ in
     #  "wireguard" = 1451685025;
     #};
   };
-
+  
   # Enable home-manager
   home-manager = {
     useGlobalPkgs = true;

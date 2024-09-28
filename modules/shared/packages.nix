@@ -2,7 +2,7 @@
 
 with pkgs; [
   # General packages for development and system management
-  #alacritty
+  # alacritty
   kitty
   aspell
   aspellDicts.en
@@ -26,8 +26,8 @@ with pkgs; [
   #libfido2
 
   # Cloud-related tools and SDKs
-  # docker
-  # docker-compose
+  docker
+  docker-compose
 
   # Media-related packages
   #emacs-all-the-icons-fonts
@@ -67,6 +67,7 @@ with pkgs; [
   unzip
   zsh-powerlevel10k
   yazi
+  tldr
 
   # Python packages
   #python39
