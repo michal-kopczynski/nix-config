@@ -277,8 +277,8 @@ let name = "Michal Kopczynski";
   #   };
   # };
 
-  tmux = {
-    enable = true;
+  # tmux = {
+  #   enable = true;
     # plugins = with pkgs.tmuxPlugins; [
     #   vim-tmux-navigator
     #   sensible
@@ -359,102 +359,103 @@ let name = "Michal Kopczynski";
     #   bind-key -T copy-mode-vi 'C-l' select-pane -R
     #   bind-key -T copy-mode-vi 'C-\' select-pane -l
     #   '';
-    extraConfig = ''
-      unbind-key C-b
 
-      set-option -g prefix C-Space
+  #   extraConfig = ''
+  #     unbind-key C-b
 
-      bind-key C-Space send-prefix
+  #     set-option -g prefix C-Space
 
-      bind r source-file ~/.tmux.conf
+  #     bind-key C-Space send-prefix
 
-      set -s escape-time 0
-      set -g base-index 1
+  #     bind r source-file ~/.tmux.conf
 
-      # vim-like pane switching
-      bind -r ^ last-window
-      bind -r k select-pane -U
-      bind -r j select-pane -D
-      bind -r h select-pane -L
-      bind -r l select-pane -R
+  #     set -s escape-time 0
+  #     set -g base-index 1
 
-      set -g mouse on
-      set -g set-clipboard on
+  #     # vim-like pane switching
+  #     bind -r ^ last-window
+  #     bind -r k select-pane -U
+  #     bind -r j select-pane -D
+  #     bind -r h select-pane -L
+  #     bind -r l select-pane -R
 
-      setw -g mode-keys vi
-      #bind-key -T copy-mode-vi y send-keys -X copy-selection
+  #     set -g mouse on
+  #     set -g set-clipboard on
 
-      # To address ssh forwarding issue in tmux 
-      # (Permission denied (publickey))
-      # See https://werat.dev/blog/happy-ssh-agent-forwarding/
-      set-environment -g 'SSH_AUTH_SOCK' ~/.ssh/ssh_auth_sock
+  #     setw -g mode-keys vi
+  #     #bind-key -T copy-mode-vi y send-keys -X copy-selection
 
-      # List of plugins
-      set -g @plugin 'tmux-plugins/tpm'
-      set -g @plugin 'tmux-plugins/tmux-sensible'
-      set -g @plugin 'jabirali/tmux-tilish'
-      set -g @tilish-default 'even-horizontal'
+  #     # To address ssh forwarding issue in tmux 
+  #     # (Permission denied (publickey))
+  #     # See https://werat.dev/blog/happy-ssh-agent-forwarding/
+  #     set-environment -g 'SSH_AUTH_SOCK' ~/.ssh/ssh_auth_sock
 
-      # Plugin options.
-      set -g @tilish-navigate 'on'
+  #     # List of plugins
+  #     set -g @plugin 'tmux-plugins/tpm'
+  #     set -g @plugin 'tmux-plugins/tmux-sensible'
+  #     set -g @plugin 'jabirali/tmux-tilish'
+  #     set -g @tilish-default 'even-horizontal'
 
-      # Smart pane switching with awareness of Vim splits.
-      # See: https://github.com/christoomey/vim-tmux-navigator
-      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
-          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
-      bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
-      bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
-      bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
-      bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
-      tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
-      if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
-          "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
-      if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
-          "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+  #     # Plugin options.
+  #     set -g @tilish-navigate 'on'
 
-      bind-key -T copy-mode-vi 'C-h' select-pane -L
-      bind-key -T copy-mode-vi 'C-j' select-pane -D
-      bind-key -T copy-mode-vi 'C-k' select-pane -U
-      bind-key -T copy-mode-vi 'C-l' select-pane -R
-      bind-key -T copy-mode-vi 'C-\' select-pane -l
+  #     # Smart pane switching with awareness of Vim splits.
+  #     # See: https://github.com/christoomey/vim-tmux-navigator
+  #     is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+  #         | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
+  #     bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
+  #     bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
+  #     bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
+  #     bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
+  #     tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+  #     if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+  #         "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+  #     if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+  #         "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
 
-      # end of config for vim-tmux-navigator
+  #     bind-key -T copy-mode-vi 'C-h' select-pane -L
+  #     bind-key -T copy-mode-vi 'C-j' select-pane -D
+  #     bind-key -T copy-mode-vi 'C-k' select-pane -U
+  #     bind-key -T copy-mode-vi 'C-l' select-pane -R
+  #     bind-key -T copy-mode-vi 'C-\' select-pane -l
 
-      set -g @plugin 'tmux-plugins/tmux-yank'
-      set -g @yank_selection_mouse 'clipboard' # or 'primary' or 'secondary'
+  #     # end of config for vim-tmux-navigator
 
-      set -g window-style 'fg=colour247,bg=colour236'
-      set -g window-active-style 'fg=colour250,bg=black'
+  #     set -g @plugin 'tmux-plugins/tmux-yank'
+  #     set -g @yank_selection_mouse 'clipboard' # or 'primary' or 'secondary'
+
+  #     set -g window-style 'fg=colour247,bg=colour236'
+  #     set -g window-active-style 'fg=colour250,bg=black'
 
 
-      set -g @plugin 'tmux-plugins/tmux-resurrect'
-      set -g @plugin 'tmux-plugins/tmux-continuum'
+  #     set -g @plugin 'tmux-plugins/tmux-resurrect'
+  #     set -g @plugin 'tmux-plugins/tmux-continuum'
 
-      set -g @continuum-boot 'on'
-      set -g @continuum-restore 'on'
+  #     set -g @continuum-boot 'on'
+  #     set -g @continuum-restore 'on'
 
-      # Other examples::w
-      # set -g @plugin 'github_username/plugin_name'
-      # set -g @plugin 'github_username/plugin_name#branch'
-      # set -g @plugin 'git@github.com:user/plugin'
-      # set -g @plugin 'git@bitbucket.com:user/plugin'
+  #     # Other examples::w
+  #     # set -g @plugin 'github_username/plugin_name'
+  #     # set -g @plugin 'github_username/plugin_name#branch'
+  #     # set -g @plugin 'git@github.com:user/plugin'
+  #     # set -g @plugin 'git@bitbucket.com:user/plugin'
 
-      # For yazi image preview
-      # https://yazi-rs.github.io/docs/image-preview
-      set -g allow-passthrough on
-      set -ga update-environment TERM
-      set -ga update-environment TERM_PROGRAM
-      # If yazi hangs or there is some issue try to restart tmux
-      # tmux kill-server && tmux || tmux
+  #     # For yazi image preview
+  #     # https://yazi-rs.github.io/docs/image-preview
+  #     set -g allow-passthrough on
+  #     set -ga update-environment TERM
+  #     set -ga update-environment TERM_PROGRAM
+  #     # If yazi hangs or there is some issue try to restart tmux
+  #     # tmux kill-server && tmux || tmux
 
-      # Install `tpm` if needed.
-      if "test ! -d ~/.tmux/plugins/tpm" \
-        "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
+  #     # Install `tpm` if needed.
+  #     if "test ! -d ~/.tmux/plugins/tpm" \
+  #       "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm && ~/.tmux/plugins/tpm/bin/install_plugins'"
 
-      # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
-      run '~/.tmux/plugins/tpm/tpm'
-    '';
-  };
+  #     # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+  #     run '~/.tmux/plugins/tpm/tpm'
+  #   '';
+  # };
 
   bat = {
     enable = true;
