@@ -19,8 +19,9 @@ _:
   #"vlc"
 
   # Productivity Tools
-  "raycast"
+  #"raycast"
 
   # Browsers
   #"google-chrome"
+  "arc"
 ]
