@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 
 let name = "Michal Kopczynski";
-    user = "mk058946";
+    user = "michal";
     email = "26494112+michal-kopczynski@users.noreply.github.com"; in
 {
   # Shared shell configuration
@@ -455,7 +455,109 @@ let name = "Michal Kopczynski";
   #     # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
   #     run '~/.tmux/plugins/tpm/tpm'
   #   '';
+#   };
+  # tmux = {
+  #   enable = true;
+  #   plugins = [ pkgs.tmuxPlugins.tilish ];
+  #   extraConfig = ''
+  #     set -g @tilish-navigate 'on'
+  #     set -g @tilish-default 'even-horizontal'
+  #   '';
   # };
+  #
+  tmux = {
+    enable = true;
+    # https://github.com/NixOS/nixpkgs/blob/master/pkgs/misc/tmux-plugins/efault.nix
+    # base-index = 3;
+    plugins = with pkgs;
+    [
+      {
+        plugin = tmuxPlugins.tilish;
+        extraConfig = ''
+          set -g @tilish-default 'even-horizontal'
+          set -g @tilish-navigate 'on'
+        '';
+      }
+      tmuxPlugins.sensible
+      tmuxPlugins.resurrect
+      # tmuxPlugins.continuum
+      {
+        plugin = tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-boot 'on'
+          set -g @continuum-restore 'on'
+        '';
+      }
+      tmuxPlugins.yank
+    ];
+    extraConfig = ''
+
+      # As we can't use Command(which is under Ctrl key)+space on MacOs - leave with Ctrl+b
+      unbind-key C-b
+      set-option -g prefix C-Space
+      bind-key C-Space send-prefix
+
+      # set-option -g prefix C-b
+      # bind-key C-b send-prefix
+
+      bind r source-file ~/.config/tmux/tmux.conf
+
+      set -s escape-time 0
+      set -g base-index 1
+
+      # vim-like pane switching
+      bind -r ^ last-window
+      bind -r k select-pane -U
+      bind -r j select-pane -D
+      bind -r h select-pane -L
+      bind -r l select-pane -R
+
+      set -g mouse on
+      set -g set-clipboard on
+
+      setw -g mode-keys vi
+      #bind-key -T copy-mode-vi y send-keys -X copy-selection
+
+      # To address ssh forwarding issue in tmux 
+      # (Permission denied (publickey))
+      # See https://werat.dev/blog/happy-ssh-agent-forwarding/
+      set-environment -g 'SSH_AUTH_SOCK' ~/.ssh/ssh_auth_sock
+
+
+      # Smart pane switching with awareness of Vim splits.
+      # See: https://github.com/christoomey/vim-tmux-navigator
+      is_vim="ps -o state= -o comm= -t '#{pane_tty}' \
+          | grep -iqE '^[^TXZ ]+ +(\\S+\\/)?g?(view|l?n?vim?x?|fzf)(diff)?$'"
+      bind-key -n 'C-h' if-shell "$is_vim" 'send-keys C-h'  'select-pane -L'
+      bind-key -n 'C-j' if-shell "$is_vim" 'send-keys C-j'  'select-pane -D'
+      bind-key -n 'C-k' if-shell "$is_vim" 'send-keys C-k'  'select-pane -U'
+      bind-key -n 'C-l' if-shell "$is_vim" 'send-keys C-l'  'select-pane -R'
+      tmux_version='$(tmux -V | sed -En "s/^tmux ([0-9]+(.[0-9]+)?).*/\1/p")'
+      if-shell -b '[ "$(echo "$tmux_version < 3.0" | bc)" = 1 ]' \
+          "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\'  'select-pane -l'"
+      if-shell -b '[ "$(echo "$tmux_version >= 3.0" | bc)" = 1 ]' \
+          "bind-key -n 'C-\\' if-shell \"$is_vim\" 'send-keys C-\\\\'  'select-pane -l'"
+
+      bind-key -T copy-mode-vi 'C-h' select-pane -L
+      bind-key -T copy-mode-vi 'C-j' select-pane -D
+      bind-key -T copy-mode-vi 'C-k' select-pane -U
+      bind-key -T copy-mode-vi 'C-l' select-pane -R
+      bind-key -T copy-mode-vi 'C-\' select-pane -l
+
+      # end of config for vim-tmux-navigator
+
+      # set -g @plugin 'tmux-plugins/tmux-yank'
+      # does it actually work?
+      set -g @yank_selection_mouse 'clipboard' # or 'primary' or 'secondary'
+
+      # doesn't really work
+      # if-shell -b 'test $(uname) = "Linux"' 'bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "xclip -in -selection clipboard"'
+      # if-shell -b 'test $(uname) = "Darwin"' 'bind -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"'
+
+      set -g window-style 'fg=colour247,bg=colour236'
+      set -g window-active-style 'fg=colour250,bg=black'
+    '';
+  };
 
   bat = {
     enable = true;

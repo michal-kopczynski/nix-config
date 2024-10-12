@@ -23,5 +23,5 @@ _:
 
   # Browsers
   #"google-chrome"
-  "arc"
+#  "arc"
 ]

@@ -10,9 +10,9 @@
       # # the Nix store. Activating the configuration will then make '~/.screenrc' a
       # # symlink to the Nix store copy.
       # ".screenrc".source = dotfiles/screenrc;
-      ".tmux.conf".source = ../shared/config/.tmux.conf;
+#      ".tmux.conf".source = ../shared/config/.tmux.conf;
       # ".vimrc".source = ../.vimrc;
-      ".zshrc".source = ../shared/config/.zshrc;
+#      ".zshrc".source = ../shared/config/.zshrc;
       # ".config" = {
       #   source = ../../../.config;
       #   recursive = true;

@@ -3,20 +3,20 @@
 with pkgs; [
   # General packages for development and system management
   # alacritty
-  kitty
-  aspell
-  aspellDicts.en
-  bash-completion
-  bat
-  btop
-  coreutils
-  killall
+  # kitty
+#  aspell
+#  aspellDicts.en
+#  bash-completion
+#  bat
+#  btop
+#  coreutils
+#  killall
   neofetch
-  openssh
-  #sqlite
-  wget
-  zip
-
+#  openssh
+#  #sqlite
+#  wget
+#  zip
+#
   neovim
 
   # Encryption and security tools
@@ -26,8 +26,9 @@ with pkgs; [
   #libfido2
 
   # Cloud-related tools and SDKs
-  docker
-  docker-compose
+#  docker
+#  docker-compose
+  kubectx
 
   # Media-related packages
   #emacs-all-the-icons-fonts
@@ -46,26 +47,27 @@ with pkgs; [
   #nodejs
 
   # Go development tools
-  go
-  gopls
+#  go
+#  gopls
   
   # html-lsp
-  htmx-lsp
-  tailwindcss-language-server
+#  htmx-lsp
+#  tailwindcss-language-server
 
   # Text and terminal utilities
-  htop
-  hunspell
-  iftop
-  jetbrains-mono
+#  htop
+#  hunspell
+#  iftop
+#  jetbrains-mono
+  # free
   fzf
-  jq
+#  jq # installed version 1.6 with brew
   ripgrep
   tree
   tmux
-  unrar
-  unzip
-  zsh-powerlevel10k
+#  unrar
+#  unzip
+#  zsh-powerlevel10k
   yazi
   tldr
 

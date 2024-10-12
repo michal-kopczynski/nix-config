@@ -69,9 +69,17 @@ darwin-rebuild switch --flake .
 
 # Set up OS
 
+
+
+
+## NEW VERSION Remaping MacOs keys to be similar as on Linux
+
+## Keyboard layout
+Whenever asked choose ANSI
+
 ## Remap keys (settings -> keyboard -> keyboard shortcuts -> modifier keys)
 * for USB keyboard 
-caps lock -> escape (consider hyper key instead)
+caps lock -> escape (consider hyper key instead?)
 control -> command
 option -> option
 command -> control
@@ -85,31 +93,44 @@ command -> option
 
 Result: Command ⌘ (Ctrl) | Control ^ (Win) | Alt ⌥ (Alt)
 
+
 ## Enable shortcuts to switch to different desktops/spaces
 (settings -> keyboard -> keyboard shortcuts -> mission control -> mission control)
 Note: first need to create those desktops (Win + up arrow and create desktops)
+Set Shortcut to Ctrl+number for all desktop
 
-# Disable spotlight search shortcuts
+## Spotlight search
+Remap to ^Space or consider other launchers (i.e. Raycast)
 
-# Disable changing input source shortcuts
+# Disable changing input source shortcut 
 
 # Disable emoji search shortcut (Command + Ctrl + space)
 TODO
 
 # In Raycast settings change launch shortcut to ^ + space
 
+## Additional setting
+
+## Desktop setting
+* Disable "Automatically rearange Spaces based on most recent use
+* Disable "Displays have seperate spaces"?
+* Disable "Group windows by application"
+
 ## iTerm2 setup
 * remap keys (control -> command, command -> control)
-* Disable “Terminal may enable paste bracketing”
+* but in order to allow the system switch desktop shortcuts to work
+    * (Keys -> Key Bindings) -> "+" - add Don ot Remap Modifiers for ^Space, ^AltSpace, ^0, ^1, ^<- etc
+    * See: https://gitlab.com/gnachman/iterm2/-/issues/8135
+    * Also check option with sending HexCodes?
 * Disable closing with WIN(Control) + W TODO?
+* Disable Navigation shorcuts
+* Create new profile (i.e. tmux), set as acive, in Keys -> General -> Set "Left Option Key" -> Esc+
 * iTerm2 when it’s active doesn’t allow to switch another desktop with shortcut TODO
 
 # TODO:
 * skhd not working
 * do we want to manage home-brew with Nix (only for Casks)? Seems ok, bu it blocks use of brew from command line to i.e. search packages?
 * yabai - do we really need to disable SIP? Seems to be working enough with SIP enabled-> but check with skid working
-
-
 
 ## Articles:
 * https://heywoodlh.io/linux-macos-setup
@@ -124,3 +145,5 @@ https://juliu.is/tidying-your-home-with-nix/
 
 
 
+# Goland
+* Disable Search man page Index in Terminal https://intellij-support.jetbrains.com/hc/en-us/articles/360005137400-Cmd-Shift-A-hotkey-opens-Terminal-with-apropos-search-instead-of-the-Find-Action-dialog
